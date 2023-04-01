@@ -23,7 +23,7 @@ class Discard(Box):
     """Discard Box for rigid diagrams"""
 
     def __init__(self, _type: Ty) -> None:
-        name = 'Discard({})'.format(_type)
+        name = f'Discard({_type})'
         dom, cod = _type, Ty()
         super().__init__(name, dom, cod)
         self.type = _type

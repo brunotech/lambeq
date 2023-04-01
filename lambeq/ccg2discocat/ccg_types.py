@@ -115,8 +115,7 @@ def str2biclosed(cat: str, str2type: Callable[[str], Ty] = Ty) -> Ty:
     if is_conj:
         biclosed_type = biclosed_type >> biclosed_type
 
-    extra = clean_cat[end:]
-    if extra:
+    if extra := clean_cat[end:]:
         raise CCGParseError(cat, f'extra text after index {end-1} - "{extra}"')
     return biclosed_type
 
@@ -243,7 +242,7 @@ def replace_cat_result(cat: Ty,
 
     """
 
-    if not (len(direction) in (1, 2) and set(direction).issubset('<|>')):
+    if not (len(direction) in {1, 2} and set(direction).issubset('<|>')):
         raise ValueError(f'Invalid direction: "{direction}"')
     if not cat.left:
         return cat, None
