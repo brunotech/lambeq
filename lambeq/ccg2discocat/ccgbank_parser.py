@@ -134,8 +134,7 @@ class CCGBankParser(CCGParser):
                 line_no = 0
                 for line in f:
                     line_no += 1
-                    match = self.id_regex.fullmatch(line)
-                    if match:
+                    if match := self.id_regex.fullmatch(line):
                         line_no += 1
                         tree = None
                         try:
@@ -255,7 +254,7 @@ class CCGBankParser(CCGParser):
                                biclosed_type=biclosed_type)
         else:
             children = []
-            while not sentence[pos] == ')':
+            while sentence[pos] != ')':
                 child, pos = CCGBankParser._build_ccgtree(sentence, pos)
                 children.append(child)
 

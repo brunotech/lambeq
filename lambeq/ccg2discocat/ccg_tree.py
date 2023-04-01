@@ -220,7 +220,7 @@ class CCGTree:
 
     def deriv(self,
               use_slashes: bool = False,
-              _prefix: str = '') -> str:  # pragma: no cover
+              _prefix: str = '') -> str:    # pragma: no cover
         """Produce a string representation of the tree.
 
         Parameters
@@ -242,8 +242,8 @@ class CCGTree:
             if _prefix:
                 _prefix = _prefix[:-1] + ('│ ' if _prefix[-1] == '├' else '  ')
             for child in self.children[:-1]:
-                deriv += '\n' + child.deriv(use_slashes, _prefix + '├')
-            deriv += '\n' + self.children[-1].deriv(use_slashes, _prefix + '└')
+                deriv += '\n' + child.deriv(use_slashes, f'{_prefix}├')
+            deriv += '\n' + self.children[-1].deriv(use_slashes, f'{_prefix}└')
         return deriv
 
     def to_biclosed_diagram(self, planar: bool = False) -> Diagram:
